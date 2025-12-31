@@ -24,3 +24,6 @@ console.log(validUser1);
 
 const validUser2 = userSchema.parse(user2);
 console.log(validUser2);
+
+const validUser2Error = userSchema.safeParse(user2);
+console.log(validUser2Error.error?.issues);
