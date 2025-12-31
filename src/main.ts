@@ -7,13 +7,23 @@ const userSchema = z.object({
   email: z.email(),
 });
 
-// infer typescript types for the schema
 type User = z.infer<typeof userSchema>; // infer type as it is
 
-// use the type
-const newUser: User = {
+const newUser1: User = {
   name: "abdooo",
   email: "123@123.com",
 };
+const newUser2 = {
+  name: 1,
+  email: "123@123.com",
+};
 
-console.log(userSchema.parse(newUser));
+// Handling Errors
+
+try {
+  userSchema.parse(newUser1);
+  userSchema.parse(newUser2);
+  console.log("✅ Success");
+} catch (error) {
+  console.error("❌ Error: ", error);
+}
