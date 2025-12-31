@@ -1,9 +1,19 @@
 import { z } from "zod";
 
-const userLevelSchema = z.enum(["admin", "user", "moderator", "guest"]);
+// define schema
+const userSchema = z.object({
+  name: z.string(),
+  age: z.number().optional(),
+  email: z.email(),
+});
 
-const user1Role = "admin";
-const user2Role = "none";
+// infer typescript types for the schema
+type User = z.infer<typeof userSchema>; // infer type as it is
 
-console.log(userLevelSchema.parse(user1Role));
-console.log(userLevelSchema.parse(user2Role));
+// use the type
+const newUser: User = {
+  name: "abdooo",
+  email: "123@123.com",
+};
+
+console.log(userSchema.parse(newUser));
