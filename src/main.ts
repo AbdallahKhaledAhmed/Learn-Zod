@@ -1,9 +1,9 @@
-import { string, z } from "zod";
+import { z } from "zod";
 
-const toLearnSchema = z.array(string());
+const userLevelSchema = z.enum(["admin", "user", "moderator", "guest"]);
 
-const toLearn = ["Jest", "NestJS", "Postgresql", "Docker"];
-const toLearn2 = [1, "NestJS", "Postgresql", "Docker", 2]; // error
+const user1Role = "admin";
+const user2Role = "none";
 
-console.log(toLearnSchema.parse(toLearn));
-console.log(toLearnSchema.parse(toLearn2));
+console.log(userLevelSchema.parse(user1Role));
+console.log(userLevelSchema.parse(user2Role));
