@@ -1,18 +1,9 @@
-import { z } from "zod";
+import { string, z } from "zod";
 
-const userSchema = z.object({
-  name: z.string(),
-  phoneNumber: z.string(),
-  address: z.object({
-    city: z.string(),
-    country: z.string(),
-  }),
-});
+const toLearnSchema = z.array(string());
 
-const user = {
-  name: "Ahmed",
-  phoneNumber: "011234567890",
-  address: { city: "Beni-Suef", country: "Egypt" },
-};
+const toLearn = ["Jest", "NestJS", "Postgresql", "Docker"];
+const toLearn2 = [1, "NestJS", "Postgresql", "Docker", 2]; // error
 
-console.log(userSchema.parse(user));
+console.log(toLearnSchema.parse(toLearn));
+console.log(toLearnSchema.parse(toLearn2));
